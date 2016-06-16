@@ -4,7 +4,12 @@ var express = require('express');
 var Note = require('./models/note');
 var app = express();
 
+app.use(function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
+// when you receive get request, do the function below:
 app.get('/', function(req, res){
   Note
     .find()
