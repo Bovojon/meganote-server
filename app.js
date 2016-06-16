@@ -1,8 +1,6 @@
 require('dotenv').load();
 var express = require('express');
-var db = require('mongoose');
-
-db.connect(process.env.DB_URI);
+var db = require('./config/db'); // maybe use config\db is doesn't work
 var app = express();
 
 //Specify schema by passing 2nd arg
