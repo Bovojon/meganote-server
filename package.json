@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Bovojon/meganote-server/issues"
   },
-  "homepage": "https://github.com/Bovojon/meganote-server#readme"
+  "homepage": "https://github.com/Bovojon/meganote-server#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
