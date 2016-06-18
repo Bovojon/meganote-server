@@ -6,14 +6,19 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+// Middleware
 app.use(function(req, res, next){
+// Allow CORS (Cross-origin resource sharing)
   res.header('Access-Control-Allow-Origin', '*');
+// Allow Content-Type header (for JSON payloads)
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
 
+// Body parsing for JSON POST/PUT payloads
 app.use(bodyParser.json());
-// when you receive get request, do the function below:
+
+// Read ALL notes when receive get request
 app.get('/', function(req, res){
   Note
     .find() // returns descendant elements of the selected element.
@@ -22,6 +27,7 @@ app.get('/', function(req, res){
     });
 });
 
+// CREATE a note
 app.post('/', function(req, res){
   var note = new Note({
     title: req.body.note.title,
