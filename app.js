@@ -79,6 +79,24 @@ app.post('/', function(req, res){
       });
   });
 
+// DELETE a note
+app.delete('/:id', function(req, res){
+  Note
+    .findOne({
+      _id: req.params.id
+    })
+    .then(function(note){
+      note
+        .remove()
+        .then(function(){
+          res.json({
+            message: 'Note deleted',
+            note: note
+          })
+        });
+    });
+});
+
 app.listen(3030, function(){ // Not 8000
   console.log('DB: '+process.env.DB_URI);
   console.log('Listening on port 3030')
