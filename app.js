@@ -38,7 +38,7 @@ app.get('/:id', function(req, res){
       _id: req.params.id
     })
     .then(function(note){ // then accepts 2 parameters - 1st is the success function and 2nd is the error function
-      res.json.(note);
+      res.json(note);
     });
 });
 
