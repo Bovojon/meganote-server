@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 app.get('/', function(req, res){
   Note
     .find() // returns descendant elements of the selected element.
+    .sort({ updated_at: 'desc' }) // sort notes on server
     .then(function(notes){
       res.json(notes);
     });
