@@ -1,7 +1,7 @@
 {
   "name": "meganote-server",
   "version": "0.1.0",
-  "description": "A REST API for note taking",
+  "description": "A REST API for note-taking.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bovojon/meganote-server.git"
+    "url": "git+https://github.com/xternbootcamp16/meganote-server.git"
   },
-  "author": "Jon",
+  "author": "Dave Strus",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Bovojon/meganote-server/issues"
+    "url": "https://github.com/xternbootcamp16/meganote-server/issues"
   },
-  "homepage": "https://github.com/Bovojon/meganote-server#readme",
+  "homepage": "https://github.com/xternbootcamp16/meganote-server#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
     "dotenv": "^2.0.0",

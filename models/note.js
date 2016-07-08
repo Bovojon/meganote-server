@@ -1,8 +1,7 @@
 var db = require('../config/db');
 var sanitizeHtml = require('sanitize-html');
-var htmltoText = require('html-to-text');
+var htmlToText = require('html-to-text');
 
-//Specify schema by passing 2nd arg
 var noteSchema = db.Schema({
   title: String,
   body_html: String,
@@ -10,7 +9,7 @@ var noteSchema = db.Schema({
   updated_at: { type: Date, default: Date.now }
 });
 
-noteSchema.pre('save', function(next){
+noteSchema.pre('save', function(next) {
   this.body_text = htmlToText.fromString(this.body_html);
   this.body_html = sanitizeHtml(this.body_html);
   this.updated_at = Date.now();
