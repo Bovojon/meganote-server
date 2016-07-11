@@ -68,6 +68,7 @@ router.put('/:id', function(req, res) {
       });
 });
 
+// DELETE a note
 router.delete('/:id', function(req, res) {
   Note
     .findOne({
@@ -84,6 +85,5 @@ router.delete('/:id', function(req, res) {
         });
     });
 });
-
 
 module.exports = router;

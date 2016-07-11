@@ -1,16 +1,24 @@
 var db = require('../config/db');
 
 var userSchema = db.Schema({
-  name: { type: String, require: true, },
-  username: { type: String, require: true, unique: true },
-  passwordDigest: {
+  name: {
     type: String,
     required: true,
-
   },
-  updated_at: { type: Date, default: Date.now, },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  passwordDigest: {
+    type: String,
+    required: true
+  },
+  updated_at: {
+    type: Date,
+    default: Date.now
+  }
 });
-
 
 userSchema.pre('save', function(next) {
   this.updated_at = Date.now();
