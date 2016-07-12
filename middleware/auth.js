@@ -19,9 +19,21 @@ module.exports = (req, res, next){
       }
 
       // find user
-
-
-
+      User
+        .findOne({ _id: decodedPayload._id })
+        .then(
+          user => {
+            if (user) {
+              // add user to the request
+              req.user = user;
+              next();
+            }
+            else {
+              // user not found
+              res.status(401).json({ message: 'Authentication required' });
+            }
+          }
+        );
     });
     next();
   }
