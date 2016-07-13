@@ -19,11 +19,11 @@ router.post('/', function(req, res) {
   });
 
   user
-    .save()
+    .save(err => res.status(422).json(err))
     .then(
       userData => {
         var token = jwt.sign(
-          { _id: userData._id }, 
+          { _id: userData._id },
           process.env.JWT_SECRET,
           {
             expiresIn: 60*60*24
