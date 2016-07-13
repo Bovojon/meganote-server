@@ -16,10 +16,10 @@ router.post('/', (req, res) => {
             if (isMatch) {
               // correct password
               var token = jwt.sign(
-                {_id: userData._id },
+                { _id: user._id }, 
                 process.env.JWT_SECRET,
                 {
-                expiresIn: 60*60*24
+                  expiresIn: 60*60*24
                 }
               );
               res.json({

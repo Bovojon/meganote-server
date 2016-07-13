@@ -1,9 +1,8 @@
 var router = require('express').Router();
-var Note = require('../models/note');
 
 // READ all notes
 router.get('/', function(req, res) {
-  res.json(req.user.notes)
+  res.json(req.user.notes);
 });
 
 // READ one note
@@ -13,7 +12,7 @@ router.get('/:id', function(req, res) {
 
 // CREATE a note
 router.post('/', function(req, res) {
-  var notes = req.user.notes.create({
+  var note = req.user.notes.create({
     title: req.body.note.title,
     body_html: req.body.note.body_html
   });
@@ -27,8 +26,9 @@ router.post('/', function(req, res) {
         res.json({
           message: 'Successfully created note',
           note: note,
-      });
-    });
+        });
+      }
+    );
 });
 
 // UPDATE a note
@@ -36,21 +36,18 @@ router.put('/:id', function(req, res) {
   var note = req.user.notes.id(req.params.id);
   note.title = req.body.note.title;
   note.body_html = req.body.note.body_html;
-  this.updated_at = Date.now();
+  note.updated_at = Date.now();
 
   req.user
     .save()
     .then(
       () => {
         res.json({
-          message: 'Your change saved!',
-          note: note,
+          message: 'Your changes have been saved.',
+          note: note
         });
       }
     );
-
-
-
 });
 
 // DELETE a note
@@ -65,7 +62,7 @@ router.delete('/:id', function(req, res) {
         res.json({
           message: 'That note has been deleted.',
           note: note
-        })
+        });
       }
     );
 });
