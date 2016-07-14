@@ -25,6 +25,6 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/sessions', sessionRoutes);
 
 
-app.listen(3030, function() {
-  console.log('Listening on http://localhost:3030...');
+app.listen(process.env.PORT, function() {
+  console.log(`Listening on ${process.env.PORT}...`);
 });
