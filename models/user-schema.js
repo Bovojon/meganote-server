@@ -1,5 +1,4 @@
 var bcrypt = require('bcryptjs');
-var beautifyUnique = require('mongoose-beautiful-unique-validation');
 var db = require('../config/db');
 var noteSchema = require('./note-schema');
 
@@ -24,8 +23,6 @@ var userSchema = db.Schema({
   notes: [noteSchema],
 });
 
-userSchema.plugin(beautifyUnique);
-
 userSchema.pre('save', function(next) {
   this.updated_at = Date.now();
   next();
@@ -38,16 +35,9 @@ userSchema.methods.toJSON = function() {
   return user;
 };
 
-userSchema.methods.authenticate = function(password) {
-  return new Promise((resolve, reject) => {
-    bcrypt.compare(password, this.passwordDigest, (err, isMatch) => {
-      if (isMatch){
-        resolve(isMatch);
-      }
-      else{
-        reject(err);
-      }
-    });
+userSchema.methods.authenticate = function(password, callback) {
+  bcrypt.compare(password, this.passwordDigest, (err, isMatch) => {
+    callback(isMatch);
   });
 };
 

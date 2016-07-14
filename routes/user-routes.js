@@ -2,13 +2,12 @@ var router = require('express').Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
-var errorHelper = require('../helpers/error-helper');
 
 // CREATE a user
 router.post('/', function(req, res) {
   if (!passwordsPresent(req.body.user) || !passwordsMatch(req.body.user)) {
     res.status(422).json({
-      errors: ['Passwords must match!']
+      message: 'Passwords must match!'
     });
     return;
   }
@@ -24,7 +23,7 @@ router.post('/', function(req, res) {
     .then(
       userData => {
         var token = jwt.sign(
-          { _id: userData._id },
+          { _id: userData._id }, 
           process.env.JWT_SECRET,
           {
             expiresIn: 60*60*24
@@ -33,12 +32,6 @@ router.post('/', function(req, res) {
         res.json({
           user: userData,
           authToken: token
-        });
-      },
-
-      err => {
-        res.status(422).json({
-          errors: errorHelper(err),
         });
       }
     );

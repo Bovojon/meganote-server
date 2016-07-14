@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
-}
+require('dotenv').load();
 var express = require('express');
 var bodyParser = require('body-parser');
 var noteRoutes = require('./routes/note-routes');
@@ -10,7 +8,6 @@ var headersMiddleware = require('./middleware/headers');
 var authMiddleware = require('./middleware/auth');
 
 var app = express();
-app.set('port', (process.env.PORT || 3030));
 
 // Middleware
 app.use(headersMiddleware);
@@ -25,6 +22,6 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/sessions', sessionRoutes);
 
 
-app.listen(app.get('port'), function() {
-  console.log(`Listening on ${app.get('port')}...`);
+app.listen(3030, function() {
+  console.log('Listening on http://localhost:3030...');
 });
